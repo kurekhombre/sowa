@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}">Go Back</a>
+<br>
+<h2>{{topic.title}}</h2>
+<p>{{topic.description}}</p>
+<h2>Notes:</h2>
+{% for note in notes %}
+<a href="{% url 'note-update' topic.id note.id %}">{{note.title}}</a>
+
+{% endfor %}
+<br>
+<a href="{% url 'create-note' topic.id %}">Create new note</a>
+{% endblock content %}

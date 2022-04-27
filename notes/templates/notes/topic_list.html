@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h2>Topic list</h2>
+<ul>
+{% for topic in topics %}
+    <li>
+<a href="{% url 'topic-detail' topic.id %}?next=/note"><h3>{{ topic.title }}</h3></a>
+<a href="{% url 'update-topic' topic.id %}">Edit</a>
+<a href="{% url 'delete-topic' topic.id %}?next=/note">Delete</a>
+    </li>
+{% endfor %}
+    </ul>
+<br>
+<a href="{% url 'create-topic' %}">New topic</a>
+
+{% endblock content %}

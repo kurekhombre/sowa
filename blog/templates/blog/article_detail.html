@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+    <img  height="500" src="{{ article.image.url }}"><br>
+<h1>{{ article.title }}</h1>
+   <p> {{ article.description }}</p>
+    </div>
+{% endblock content %}
