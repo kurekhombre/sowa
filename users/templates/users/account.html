@@ -26,26 +26,31 @@
         </div>
         <div class="settings">
           <h3 class="settings__title">Topics</h3>
-            <table class="settings__table">
-            {% for topic in topics %}
-            <tr>
-            <td class="settings__tableInfo">
-              <h4>{{topic.title}}</h4>
-              <p>
-                {{topic.description}}
-              </p>
-            </td>
-          </tr>
-          {% endfor %}
-            </table>
+            <div class="settings__table">
+            <div class="devInfo">
+
+            <div class="devInfo__skills">
+              {% for topic in topics %}
+              <div class="devSkill">
+                <h4 class="devSkill__title">{{topic.title}}</h4>
+                <p class="devSkill__info">
+                  {{topic.description}}
+                </p>
+
+              </div>
+              {% endfor %}
         </div>
+            </div>
+            </div>
               <div class="settings">
-          <h3 class="settings__title">Tests</h3>
+
 
         </div>
       </div>
     </div>
   </div>
+  </div>
+  </>
 </main>
 
 {% endblock %}

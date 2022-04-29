@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
     <div class="container">
+<a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}">Go Back</a>
     <img  height="500" src="{{ article.image.url }}"><br>
 <h1>{{ article.title }}</h1>
    <p> {{ article.description }}</p>

@@ -6,7 +6,10 @@
 <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
 {% if page == 'update' %}
 <div class="container">
+                    <a class="btn btn--sub btn--lg  my-md" href="{% url 'topic-detail' topic.pk %}">Go Back</a>
+
     <form method="POST">{% csrf_token %}
+
         <div>
            <h2> {{ topic.title }} </h2>
         </div>
@@ -14,19 +17,24 @@
             <input class="form-control" type="text" name="title" id="title" placeholder="Note Title" value="{{ note.title }}">
         </div>
 
-        <div class="container">
+        <div class="container-fluid">
             {% if records %}
                 {% for record in records %}
-         <div class='element row' id='div_1'>
-          <input class="col" type='text' placeholder='Enter key' id='key_1' name='key' value="{{ record.key }}">
-          <input class="col-7" type='text' placeholder='Enter value' id='value_1' name="value" value="{{ record.value }}">&nbsp;
+
+         <div class='element row' id='div_{{forloop.counter0}}'>
+          <input required class="col" type='text' placeholder='Enter key' id='key_{{forloop.counter0}}' name='key' value="{{ record.key }}">
+          <input required class="col-7" type='text' placeholder='Enter value' id='value_{{forloop.counter0}}' name="value" value="{{ record.value }}">&nbsp;
+                 {% if forloop.counter == 1 %}
           <span class='add col-2 btn btn-success'>+</span>
+                {% else %}
+           <span class='add col-2 btn btn-danger remove' id="remove_{{forloop.counter0}}">-</span>
+                 {% endif %}
          </div>
                 {% endfor %}
             {% else %}
            <div class='element row' id='div_1'>
-          <input class="col" type='text' placeholder='Enter key' id='key_1' name='key'>
-          <input class="col-7" type='text' placeholder='Enter value' id='value_1' name="value">&nbsp;
+          <input required class="col" type='text' placeholder='Enter key' id='key_1' name='key'>
+          <input required class="col-7" type='text' placeholder='Enter value' id='value_1' name="value">&nbsp;
           <span class='add col-2 btn btn-success'>+</span>
          </div>
             {% endif %}
@@ -40,10 +48,13 @@
 
             <div class="row note">
             <div class="col">
+                        <a class="btn btn-primary" href="{% url 'test' topic.pk note.pk %}">Make a Test</a>
             </div>
 
             <div class="col-2">
-                        <input class="btn btn-success" type="submit" value="Save">
+                <input class="btn btn-success" type="submit" value="Save">
+                <a class="btn btn-danger" href="{% url 'note-delete' topic.id note.id %}?next=/note/{{topic.pk}}/update-note/{{note.pk}}">Delete</a>
+
             </div>
         </div>
 
@@ -53,6 +64,8 @@
   </div>
 {% else %}
 <div class="container">
+                    <a class="btn btn--sub btn--lg  my-md" href="{% url 'topic-detail' topic.pk %}">Go Back</a>
+
     <form method="POST">{% csrf_token %}
         <div>
                    <h2> {{ topic.title }} </h2>
@@ -61,19 +74,20 @@
             <input class="form-control" type="text" name="title" id="title" placeholder="Note Title" value="{{ note.title }}">
         </div>
 
-        <div class="container">
+        <div class="container-fluid">
             {% if records %}
                 {% for record in records %}
          <div class='element row' id='div_1'>
-          <input class="col" type='text' placeholder='Enter key' id='key_1' name='key' value="{{ record.key }}">
-          <input class="col-7" type='text' placeholder='Enter value' id='value_1' name="value" value="{{ record.value }}">&nbsp;
+          <input required class="col" type='text' placeholder='Enter key' id='key_1' name='key' value="{{ record.key }}">
+          <input required class="col-7" type='text' placeholder='Enter value' id='value_1' name="value" value="{{ record.value }}">&nbsp;
           <span class='add col-2 btn btn-success'>+</span>
          </div>
                 {% endfor %}
             {% else %}
            <div class='element row' id='div_1'>
-          <input class="col" type='text' placeholder='Enter key' id='key_1' name='key'>
-          <input class="col-7" type='text' placeholder='Enter value' id='value_1' name="value">&nbsp;
+          <input required class="col" type='text' placeholder='Enter key' id='key_1' name='key'>
+          <input required class="col-7" type='text' placeholder='Enter value' id='value_1' name="value">&nbsp;
+
           <span class='add col-2 btn btn-success'>+</span>
          </div>
             {% endif %}
@@ -90,7 +104,7 @@
             </div>
 
             <div class="col-2">
-                        <input class="btn btn-success" type="submit" value="Save">
+                <input class="btn btn-success" type="submit" value="Save">
             </div>
         </div>
 
@@ -113,7 +127,7 @@ $(document).ready(function(){
   var max = 20;
   if(total_element < max ){
    $(".element:last").after("<div class='element row' id='div_"+ nextindex +"'></div>");
-   $("#div_" + nextindex).append("<input class='col' name='key' type='text' placeholder='Enter key' id='key_"+ nextindex +"'>&nbsp;<input class='col-7' name='value' type='text' placeholder='Enter value' id='value_"+ nextindex +"'>&nbsp;<span id='remove_" + nextindex + "' class='remove col-2 btn btn-danger'>-</span>");
+   $("#div_" + nextindex).append("<input required class='col' name='key' type='text' placeholder='Enter key' id='key_"+ nextindex +"'>&nbsp;<input required class='col-7' name='value' type='text' placeholder='Enter value' id='value_"+ nextindex +"'>&nbsp;<span id='remove_" + nextindex + "' class='remove col-2 btn btn-danger'>-</span>");
   }
 
  });

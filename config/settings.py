@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'index.apps.IndexConfig',
     'notes.apps.NotesConfig',
     'blog.apps.BlogConfig',
+    'tests.apps.TestsConfig',
 ]
 
 MIDDLEWARE = [

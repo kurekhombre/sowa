@@ -33,10 +33,13 @@ class Note(models.Model):
 
 class Record(models.Model):
     note = models.ForeignKey(Note, on_delete=models.CASCADE, null=True, blank=True)
-    key = models.CharField(max_length=100)
-    value = models.CharField(max_length=300)
+    key = models.CharField(max_length=100, blank=False, null=False)
+    value = models.CharField(max_length=300, blank=False, null=False)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return f'{self.key} | {self.value}'
+
+    class Meta:
+        unique_together = ('key', 'note')

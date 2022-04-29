@@ -4,9 +4,14 @@
 <main class="formPage my-xl">
     <div class="content-box">
         <div class="formWrapper">
-            <a class="backButton" href="{% url 'topic-list' %}"><i class="im im-angle-left"></i></a>
+            <a class="backButton" href="{{request.GET.next}}"><i class="im im-angle-left"></i></a>
             <br>
+            {% if page == 'update' %}
+            <h2>Update existing topic</h2>
+            {% else %}
             <h2>Create new topic</h2>
+            {% endif %}
+
 
             <form class="form" method="POST" action="">
                 {% csrf_token %}

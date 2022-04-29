@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h2>{{note}} Test</h2>
+    {% for record in records %}
+        <p>{{record.key}}</p>
+        <p style="color:red">{{record.value}}</p>
+
+
+        {% for answer in answers %}
+
+                <p style="color:green">{{answer}}</p>
+
+        {% endfor %}
+        {% for w in wrong %}
+            <p style="color:green">{{w}}</p>
+        {% endfor %}
+
+    <br>
+    {% endfor %}
+
+
+{% endblock content %}

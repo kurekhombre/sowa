@@ -1,17 +1,24 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<div class="container">
+    <h1>Hi {{user.profile.name}}!</h1>
 <h2>Topic list</h2>
 <ul>
 {% for topic in topics %}
     <li>
 <a href="{% url 'topic-detail' topic.id %}?next=/note"><h3>{{ topic.title }}</h3></a>
-<a href="{% url 'update-topic' topic.id %}">Edit</a>
-<a href="{% url 'delete-topic' topic.id %}?next=/note">Delete</a>
+<a href="{% url 'update-topic' topic.id %}?next=/note/{{topic.id}}"><i class="bi bi-pencil-square" style="color:green"></i></a>
+<a href="{% url 'delete-topic' topic.id %}?next=/note"><i class="bi bi-trash" style="color:red"></i></a>
     </li>
+    <ol>
+        {% for note in topic.note_set.all %}
+        <li><a href="{% url 'note-update' topic.id note.id %}"">{{ note }}</a></li>
+        {% endfor %}
+    </ol>
 {% endfor %}
     </ul>
 <br>
-<a href="{% url 'create-topic' %}">New topic</a>
-
+<a href="{% url 'create-topic' %}?next=/note" class="btn">New topic</a>
+</div>
 {% endblock content %}

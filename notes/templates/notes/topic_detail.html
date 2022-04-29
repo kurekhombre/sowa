@@ -1,15 +1,23 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}">Go Back</a>
+<div class="container">
+<a class="btn btn--sub btn--lg  my-md" href="{% url 'topic-list' %}">Go Back</a>
 <br>
-<h2>{{topic.title}}</h2>
-<p>{{topic.description}}</p>
+<h2 style="display: inline">{{topic.title}}</h2>
+<a href="{% url 'update-topic' topic.id %}?next=/note/{{topic.pk}}"><i class="bi bi-pencil-square" style="color:green"></i></a>
+<a href="{% url 'delete-topic' topic.id %}?next=/note/{{topic.pk}}"><i class="bi bi-trash" style="color:red"></i></a>
+    <p>{{topic.description}}</p>
 <h2>Notes:</h2>
 {% for note in notes %}
-<a href="{% url 'note-update' topic.id note.id %}">{{note.title}}</a>
+    <li>
+<a href="{% url 'note-update' topic.id note.id %}?next=/note/{{topic.pk}}">{{note.title}}</a>
+<a href="{% url 'note-delete' topic.id note.id %}?next=/note/{{topic.pk}}"><b>Delete</b></a>
+</li>
+
 
 {% endfor %}
 <br>
-<a href="{% url 'create-note' topic.id %}">Create new note</a>
+<a href="{% url 'create-note' topic.id %}?next=/note/{{topic.pk}}" class="btn">Create new note</a>
+    </div>
 {% endblock content %}
