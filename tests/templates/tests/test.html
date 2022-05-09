@@ -2,19 +2,17 @@
 
 {% block content %}
 <h2>{{note}} Test</h2>
-    {% for record in records %}
-        <p>{{record.key}}</p>
-        <p style="color:red">{{record.value}}</p>
+    {% for record, incorrect_answer in incorrect_answers.items %}
+        <p>{{record.key}}:</p>
+        <p style="color:green">{{record.value}}</p>
 
 
-        {% for answer in answers %}
+        {% for value in incorrect_answer %}
 
-                <p style="color:green">{{answer}}</p>
+                <p style="color:red">{{value.value}}</p>
 
         {% endfor %}
-        {% for w in wrong %}
-            <p style="color:green">{{w}}</p>
-        {% endfor %}
+
 
     <br>
     {% endfor %}

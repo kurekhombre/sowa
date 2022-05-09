@@ -3,6 +3,7 @@ from notes.models import Record
 import random
 
 
+# NOT FINISHED
 # Create your views here.
 def test(request, pk_topic, pk_note):
     profile = request.user.profile
@@ -10,21 +11,28 @@ def test(request, pk_topic, pk_note):
     note = topic.note_set.get(id=pk_note)
     records = note.record_set.all()
 
-    records_values = Record.objects.filter(note=note)
-    # print(records_values)
-    list = []
-    for record in records_values:
-        list.append(record.value)
-    wrong = random.sample(list, 3)
+    records_ids = Record.objects.filter(note=note).values_list('id', flat=True)\
+    #    .values_list('value', flat=True)
+    incorrect_answers = dict()
+    for record in records:
+        choices = []
+        while len(choices) < 3:
+            choice = random.choice(records_ids)
+            choice_record = records.get(id=choice)
+            if choice != record.id and choice_record not in choices:
+                choices.append(choice_record)
+        incorrect_answers[record] = choices
+    print(incorrect_answers)
 
-    for i in range(len(records_values)):
-        print(i)
+        # print(record_value)
+    # print(records_values)
+
     return render(
         request,
         'tests/test.html',
         context={
             'note': note,
             'records': records,
-            'wrong': wrong
+            'incorrect_answers': incorrect_answers
         }
     )
