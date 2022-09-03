@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container justify-content-center">
+        <h3>This is <i>{{note}}</i> Test</h3>
+        <p>GOOD LUCK!</p>
+    <form method="post" action="">
+        {% csrf_token %}
+      <div class="form-group m-3">
+      {% for question, answers in exercise.items %}
+        <label>{{question.key}}</label>
+          <input name="question" value="{{question.key}}" type="hidden">
+        <select size="4" name="answer" class="form-control">
+          {% for answer in answers %}
+            <option value="{{answer.value}}">{{answer.value}}</option>
+          {% endfor %}
+        </select>
+      {% endfor %}
+      </div>
+
+    <button type="submit" class="btn">Submit</button>
+    </form>
+
+{% endblock %}

@@ -1,21 +1,24 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h2>{{note}} Test</h2>
+    <div class="container">
+    <form method="post">
+        {% csrf_token %}
+    </form>
+    <h2>{{note}} Test</h2>
     {% for record, incorrect_answer in incorrect_answers.items %}
-        <p>{{record.key}}:</p>
-        <p style="color:green">{{record.value}}</p>
-
-
-        {% for value in incorrect_answer %}
-
-                <p style="color:red">{{value.value}}</p>
-
-        {% endfor %}
-
-
+        <label>{{record.key}}</label>
+        <select>
+          {% for value in incorrect_answer %}
+            {% if value.value == record.value %}
+            <option>{{value.value}}</option>
+            {% endif %}
+          <option>{{value.value}}</option><br>
+          {% endfor %}
+        </select>
     <br>
     {% endfor %}
+    </div>
 
 
 {% endblock content %}

@@ -4,7 +4,7 @@
 <header class="header">
     <div class="container container--narrow">
         <a href="#" class="header__logo">
-            <a href="{% url 'index' %}"<h1>Sowa</h1>
+            <a href="#"<h1>Sowa</h1>
         </a>
 
         <nav class="header__nav">
@@ -14,7 +14,7 @@
                 <div class="toggle-menu__lines"></div>
             </label>
             <ul class="header__menu">
-                <li class="header__menuItem"><a href="{% url 'index' %}">Home</a></li>
+                <li class="header__menuItem"><a href="#">Home</a></li>
                 <li class="header__menuItem"><a href="{% url 'article-list' %}">Blog</a></li>
                 {% if request.user.is_authenticated %}
                 <li class="header__menuItem"><a href="{% url 'topic-list' %}">Topics</a></li>
