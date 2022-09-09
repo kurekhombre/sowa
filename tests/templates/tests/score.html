@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h2 style="text-align: center">YOUR SCORE IS {{score}}/{{total}}</h2>
+<p style="text-align: center">{{percent|floatformat:2}}%</p>
+<h3 style="text-align: center"> Wrong answers:</h3>
+{% for w in wrong %}
+<p style="text-align: center; color: red"> {{w}}</p>
+{% endfor %}
+{% endblock %}

@@ -10,7 +10,7 @@
       {% for question, answers in exercise.items %}
         <label>{{question.key}}</label>
           <input name="question" value="{{question.key}}" type="hidden">
-        <select size="4" name="answer" class="form-control">
+        <select size="4" name="answer" class="form-control" required>
           {% for answer in answers %}
             <option value="{{answer.value}}">{{answer.value}}</option>
           {% endfor %}
