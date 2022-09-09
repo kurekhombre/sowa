@@ -34,7 +34,7 @@ I learned a lot about Django and a bit of JavaScript(+ and - records in Note) be
 
  # TODO
  - whole INDEX.HTML 
- - improve tests app and correct test view (remove spaghetti code)
+ - improve test app and correct test view (remove spaghetti code)
  - improve score view
  - overall frontend
  - email link authentication and forgotten password
