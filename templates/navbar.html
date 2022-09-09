@@ -18,7 +18,6 @@
                 <li class="header__menuItem"><a href="{% url 'article-list' %}">Blog</a></li>
                 {% if request.user.is_authenticated %}
                 <li class="header__menuItem"><a href="{% url 'topic-list' %}">Topics</a></li>
-                <li class="header__menuItem"><a href="#">Tests</a></li>
                 <li class="header__menuItem"><a href="{% url 'account' %}">Account</a></li>
                 <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>
                 {% else %}
