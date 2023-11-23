@@ -1,10 +1,10 @@
 # Sowa - Django e-learning platform
 
 # About
-This is my final project from a SDA course I'm still working on. Sowa is a learning platform which we can do tests based on notes.
-It has: register/login logic (the profile inherits from the django.user), editing account, creator of notes based on topics(CRUD topic, CRUD note), blog endpoint. It uses django messages too.
+This is my final project from the SDA course that I'm still working on. Sowa is a learning platform where we can take tests based on notes.
+It includes: register/login logic (the profile inherits from the django.user), account editing, note creation based on topics(CRUD topic, CRUD note) and a blog endpoint. It also utilizes Django messages. 
 
-I learned a lot about Django and a bit of JavaScript(+ and - records in Note) because of this project.
+I've learned a lot about Django and a bit of JavaScript (for adding and deleting records in Notes) because of this project."
 
 # Demo
 ![Alt text](/sowa_account.png?raw=true "Sowa Account")
